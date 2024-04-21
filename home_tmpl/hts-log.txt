@@ -1,0 +1,11 @@
+HTTrack3.49-2+libhtsjava.so.2 launched on Sat, 20 Apr 2024 23:32:20 at https://preline.co/templates/agency/index.html
+(httrack https://preline.co/templates/agency/index.html )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.49-2 mirror complete in 3 seconds : 2 links scanned, 1 files written (93991 bytes overall) [29081 bytes received at 9693 bytes/sec], 93991 bytes transferred using HTTP compression in 1 files, ratio 30%
+(No errors, 0 warnings, 0 messages)
