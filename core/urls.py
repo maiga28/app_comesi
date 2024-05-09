@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import index
 
 urlpatterns = [
@@ -26,8 +28,9 @@ urlpatterns = [
     path('facture/', include('main_apps.facture.urls')),
     path('demande/', include('main_apps.demande_transport.urls')),
     path('camionnaire/', include('main_apps.camionnaire.urls')),
-
-]
+    path('settings/', include('main_apps.settings.urls')),
+    path('account/', include('allauth.urls')),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
