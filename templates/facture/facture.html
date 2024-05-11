@@ -1,5 +1,5 @@
 {% extends "_base.html" %}
-
+{% load static %}
 {% block content %}
                 <main class="ckut6">
                 <div class="cewy4 clpyc cj3hv cofxq c3ff8 c9r0z c0ycj">
@@ -51,8 +51,8 @@
 
                         <!-- Content -->
                         <div class="c4ijw">
-                            <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr ci4cg">Good afternoon, Acme Inc. 👋</h1>
-                            <p class="c6jet">Here is what’s happening with your projects today:</p>
+                            <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr ci4cg">{{request.user.username}}, {{message}}. 👋</h1>
+                            <p class="c6jet">Tous savoir les factures :</p>
                         </div>
 
                     </div>
@@ -66,7 +66,7 @@
                             <div class="cx95x cc5dk">
                                 <header class="flex cmgwo cxbmt c7j98">
                                     <!-- Icon -->
-                                    <img src="images/icon-01.svg" width="32" height="32" alt="Icon 01">
+                                    <img src="{% static "images/icon-01.svg" %}" width="32" height="32" alt="Icon 01">
                                     <!-- Menu button -->
                                     <div class="inline-flex c4ijw" x-data="{ open: false }">
                                         <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
@@ -112,7 +112,7 @@
                             <div class="cx95x cc5dk">
                                 <header class="flex cmgwo cxbmt c7j98">
                                     <!-- Icon -->
-                                    <img src="images/icon-02.svg" width="32" height="32" alt="Icon 02">
+                                    <img src="{% static "images/icon-02.svg" %}" width="32" height="32" alt="Icon 02">
                                     <!-- Menu button -->
                                     <div class="inline-flex c4ijw" x-data="{ open: false }">
                                         <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
@@ -158,7 +158,7 @@
                             <div class="cx95x cc5dk">
                                 <header class="flex cmgwo cxbmt c7j98">
                                     <!-- Icon -->
-                                    <img src="images/icon-03.svg" width="32" height="32" alt="Icon 03">
+                                    <img src="{% static "images/icon-03.svg" %}" width="32" height="32" alt="Icon 03">
                                     <!-- Menu button -->
                                     <div class="inline-flex c4ijw" x-data="{ open: false }">
                                         <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">

@@ -1,5 +1,5 @@
 {% extends "_base.html" %}
-
+{% load static %}
 {% block content %}
 
     <main class="ckut6">
@@ -52,8 +52,8 @@
 
                 <!-- Content -->
                 <div class="c4ijw">
-                    <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr ci4cg">Good afternoon, Acme Inc. 👋</h1>
-                    <p class="c6jet">Here is what’s happening with your projects today:</p>
+                    <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr ci4cg">{{request.user.username}}, {{message}}. 👋</h1>
+                    <p class="c6jet">Les informations en temps reel:</p>
                 </div>
 
             </div>
@@ -68,7 +68,7 @@
                     <div class="cx95x cc5dk">
                         <header class="flex cmgwo cxbmt c7j98">
                             <!-- Icon -->
-                            <img src="images/icon-01.svg" width="32" height="32" alt="Icon 01">
+                            <img src="{% static "images/icon-01.svg" %}" width="32" height="32" alt="Icon 01">
                             <!-- Menu button -->
                             <div class="inline-flex c4ijw" x-data="{ open: false }">
                                 <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
@@ -94,10 +94,10 @@
                                 </div>
                             </div>
                         </header>
-                        <h2 class="text-slate-800 dark:text-slate-100 cqosy cs31h c7j98">Acme Plus</h2>
+                        <h2 class="text-slate-800 dark:text-slate-100 cqosy cs31h c7j98">Totale demandes</h2>
                         <div class="ciz4v czgoy cqosy cw3n3 c0qeg ci4cg">Sales</div>
                         <div class="flex cxbmt">
-                            <div class="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">$24,780</div>
+                            <div class="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">780</div>
                             <div class="text-sm rounded-full ck3g6 cqosy ceqwg c6er6">+49%</div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="cx95x cc5dk">
                         <header class="flex cmgwo cxbmt c7j98">
                             <!-- Icon -->
-                            <img src="images/icon-02.svg" width="32" height="32" alt="Icon 02">
+                            <img src="{% static "images/icon-02.svg" %}" width="32" height="32" alt="Icon 02">
                             <!-- Menu button -->
                             <div class="inline-flex c4ijw" x-data="{ open: false }">
                                 <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
@@ -140,10 +140,10 @@
                                 </div>
                             </div>
                         </header>
-                        <h2 class="text-slate-800 dark:text-slate-100 cqosy cs31h c7j98">Acme Advanced</h2>
+                        <h2 class="text-slate-800 dark:text-slate-100 cqosy cs31h c7j98">Total clients</h2>
                         <div class="ciz4v czgoy cqosy cw3n3 c0qeg ci4cg">Sales</div>
                         <div class="flex cxbmt">
-                            <div class="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">$17,489</div>
+                            <div class="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">489</div>
                             <div class="text-sm rounded-full cqosy ctnuc ceqwg c6er6">-14%</div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                     <div class="cx95x cc5dk">
                         <header class="flex cmgwo cxbmt c7j98">
                             <!-- Icon -->
-                            <img src="images/icon-03.svg" width="32" height="32" alt="Icon 03">
+                            <img src="{% static "images/icon-03.svg" %}" width="32" height="32" alt="Icon 03">
                             <!-- Menu button -->
                             <div class="inline-flex c4ijw" x-data="{ open: false }">
                                 <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
@@ -186,10 +186,10 @@
                                 </div>
                             </div>
                         </header>
-                        <h2 class="text-slate-800 dark:text-slate-100 cqosy cs31h c7j98">Acme Professional</h2>
+                        <h2 class="text-slate-800 dark:text-slate-100 cqosy cs31h c7j98">Total camionnaires</h2>
                         <div class="ciz4v czgoy cqosy cw3n3 c0qeg ci4cg">Sales</div>
                         <div class="flex cxbmt">
-                            <div class="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">$9,962</div>
+                            <div class="text-3xl font-bold text-slate-800 dark:text-slate-100 mr-2">962</div>
                             <div class="text-sm rounded-full ck3g6 cqosy ceqwg c6er6">+29%</div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                 <!-- Card (Recent Activity) -->
                 <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cancr c4osb cetne">
                     <header class="dark:border-slate-700 cjw7x cz4zt cx95x ctysv">
-                        <h2 class="text-slate-800 dark:text-slate-100 cqosy">Recent Activity</h2>
+                        <h2 class="text-slate-800 dark:text-slate-100 cqosy">Total camionnaires</h2>
                     </header>
                     <div class="cmue4">
 
@@ -429,7 +429,7 @@
 
                     <!-- Left: Title -->
                     <div class="clxmc c958j">
-                        <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr">Customers ✨</h1>
+                        <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr">Clients ✨</h1>
                     </div>
 
                     <!-- Right: Actions -->

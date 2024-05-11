@@ -1,8 +1,19 @@
 from django.shortcuts import render
+from datetime import datetime
+
 # Create your views here.
 
 def camionnaire(request):
-    return render(request, 'camionnaire/camionnaire.html')
+    
+    now = datetime.now()
+    if now.hour < 12:
+        message = "Bonjour"
+    else:
+        message = "Bonsoir"
+    context = {
+        'message': message
+    }
+    return render(request, 'camionnaire/camionnaire.html', context)
 
 
 def list_camionnaire(request):

@@ -1,8 +1,21 @@
 from django.shortcuts import render
-
+from django.contrib.auth.models import User
+from datetime import datetime
 # Create your views here.
 def facture(request):
-    return render(request, 'facture/facture.html')
+    
+    now = datetime.now()
+    if now.hour < 12:
+        message = "Bonjour"
+    else:
+        message = "Bonsoir"
+    
+    context = {
+        
+        'message' : message
+    }
+    
+    return render(request, 'facture/facture.html', context)
     
 # Create your views here.
 def ajouter_facture(request):

@@ -1,8 +1,17 @@
 from django.shortcuts import render
-
+from datetime import datetime
 # Create your views here.
 def demande(request):
-    return render(request,'demande/demande.html')
+    
+    now = datetime.now()
+    if now.hour < 12:
+        message = "Bonjour"
+    else:
+        message = "Bonsoir"
+    context = {
+        'message': message
+    }
+    return render(request,'demande/demande.html', context)
 
 # Create your views here.
 def list_demande(request):
