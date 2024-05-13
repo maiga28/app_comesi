@@ -1,6 +1,11 @@
 from django.urls import path
 from . import views
+
+from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+
 app_name = 'camionnaire'
+
 urlpatterns = [
     path('',views.camionnaire, name='camionnaire'),
     path('list_camionnaire/',views.list_camionnaire, name='list_camionnaire'),

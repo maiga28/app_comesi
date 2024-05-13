@@ -1,5 +1,5 @@
 {% extends "_base.html" %}
-
+{% load static %}
     {% block content %}
     
             <main class="ckut6">
@@ -9,7 +9,7 @@
                     <div class="ce97l">
 
                         <!-- Title -->
-                        <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr">Account Settings ✨</h1>
+                        <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr">Parametre du compte ✨</h1>
 
                     </div>
 
@@ -23,7 +23,7 @@
                                     <div class="ciz4v czgoy cqosy cw3n3 c0qeg cvavu">Business settings</div>
                                     <ul class="flex cmaja c108j crc9s czt1n">
                                         <li class="cid50 crc9s c6orf">
-                                            <a class="flex items-center rounded c0ewf c626f ckcyd csq8i cfnh0" href="settings.html">
+                                            <a class="flex items-center rounded c0ewf c626f ckcyd csq8i cfnh0" href="{% url 'settings:settings' %}">
                                                 <svg class="text-indigo-400 mr-2 c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
                                                     <path d="M12.311 9.527c-1.161-.393-1.85-.825-2.143-1.175A3.991 3.991 0 0012 5V4c0-2.206-1.794-4-4-4S4 1.794 4 4v1c0 1.406.732 2.639 1.832 3.352-.292.35-.981.782-2.142 1.175A3.942 3.942 0 001 13.26V16h14v-2.74c0-1.69-1.081-3.19-2.689-3.733zM6 4c0-1.103.897-2 2-2s2 .897 2 2v1c0 1.103-.897 2-2 2s-2-.897-2-2V4zm7 10H3v-.74c0-.831.534-1.569 1.33-1.838 1.845-.624 3-1.436 3.452-2.422h.436c.452.986 1.607 1.798 3.453 2.422A1.943 1.943 0 0113 13.26V14z"></path>
                                                 </svg>
@@ -55,11 +55,11 @@
                                             </a>
                                         </li>
                                         <li class="cid50 crc9s c6orf">
-                                            <a class="flex items-center rounded c626f csq8i cfnh0" href="billing.html">
+                                            <a class="flex items-center rounded c626f csq8i cfnh0" href="{% url "facture:ajouter_facture" %}">
                                                 <svg class="mr-2 ciz4v czgoy c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
                                                     <path d="M15 4c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1H3c-1.7 0-3-1.3-3-3V3c0-1.7 1.3-3 3-3h7c.6 0 1 .4 1 1v3h4zM2 3v1h7V2H3c-.6 0-1 .4-1 1zm12 11V6H2v7c0 .6.4 1 1 1h11zm-3-5h2v2h-2V9z"></path>
                                                 </svg>
-                                                <span class="text-sm cn6r0 cwxny ch1ih c6w4h cw92y">Billing &amp; Invoices</span>
+                                                <span class="text-sm cn6r0 cwxny ch1ih c6w4h cw92y">Ajouter &amp; une facture</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -91,7 +91,7 @@
                                     <section>
                                         <div class="flex items-center">
                                             <div class="mr-4">
-                                                <img class="rounded-full chkq1 c4a13" src="images/user-avatar-80.png" width="80" height="80" alt="User upload">
+                                                <img class="rounded-full chkq1 c4a13" src="{% static "images/user-avatar-80.png" %}" width="80" height="80" alt="User upload">
                                             </div>
                                             <button class="cfeqx cf1ce ceqwg cjusy">Change</button>
                                         </div>

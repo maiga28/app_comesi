@@ -20,7 +20,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import index
 
+from django.urls import path
+from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('gestion/', include('main_apps.gestion.urls')),
@@ -29,7 +35,10 @@ urlpatterns = [
     path('demande/', include('main_apps.demande_transport.urls')),
     path('camionnaire/', include('main_apps.camionnaire.urls')),
     path('settings/', include('main_apps.settings.urls')),
+    path('account/login/', auth_views.LoginView.as_view(), name='account_login'),
+    path('account/logout/', auth_views.LogoutView.as_view(), name='account_logout'),
     path('account/', include('allauth.urls')),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
