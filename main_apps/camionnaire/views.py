@@ -1,11 +1,12 @@
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
 from django.shortcuts import redirect
+from main_apps.decorators import group_required
 
 @receiver(user_logged_in)
 def user_logged_in_callback(sender, request, user, **kwargs):
     if user.groups.filter(name='client').exists():
-        if not request.path.startswith('/client/'):
+        if not request.path.startswith('client:client'):
             return redirect('client:client')
     elif user.groups.filter(name='admin').exists():
         if not request.path.startswith('/gestion/'):
@@ -21,8 +22,13 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth.decorators import permission_required
 
+@group_required('Camionneurs')
 @login_required(login_url='/account_login/')
 def camionnaire(request):
+    if user.groups.filter(name='Camionneurs').exists():
+        return redirect('camionnaire:camionnaire')
+    else:
+        return redirect('account_login')
     now = datetime.now()
     if now.hour < 12:
         message = "Bonjour"

@@ -235,7 +235,10 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'sidimaiga.work@gmail.com'
 EMAIL_HOST_PASSWORD = 'kcgs znsj yrig unzr'
 
-LOGIN_REDIRECT_URL = '/gestion/'
+
+LOGIN_REDIRECT_URL = '/settings/'
+# Logique pour rediriger les utilisateurs en fonction de leur groupe
+
 LOGOUT_REDIRECT_URL = '/account/login/'
 SIGNUP_REDIRECT_URL = '/account/login/'
 # AUTH_USER_MODEL = "gestion.Proprietaire"

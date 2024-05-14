@@ -20,6 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import index
 
+from django.conf.urls import handler404
+from .views import custom_page_not_found
+
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
@@ -35,12 +38,15 @@ urlpatterns = [
     path('demande/', include('main_apps.demande_transport.urls')),
     path('camionnaire/', include('main_apps.camionnaire.urls')),
     path('settings/', include('main_apps.settings.urls')),
-    path('account/login/', auth_views.LoginView.as_view(), name='account_login'),
-    path('account/logout/', auth_views.LogoutView.as_view(), name='account_logout'),
-    path('account/', include('allauth.urls')),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='account_login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='account_logout'),
+    path('accounts/', include('allauth.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+urlpatterns += [
+    path('<path:unknown_path>', custom_page_not_found),
+]
 
 
 

@@ -4,27 +4,35 @@ from datetime import datetime
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
 from django.shortcuts import redirect
+from main_apps.decorators import group_required
+from django.contrib.auth.decorators import login_required
 
 @receiver(user_logged_in)
 def user_logged_in_callback(sender, request, user, **kwargs):
     if user.groups.filter(name='client').exists():
-        return redirect('client:client')
+        if not request.path.startswith('client:client'):
+            return redirect('client:client')
     elif user.groups.filter(name='admin').exists():
-        return redirect('gestion:gestion')
+        if not request.path.startswith('/gestion/'):
+            return redirect('gestion:gestion')
     elif user.groups.filter(name='Camionneurs').exists():
-        return redirect('camionnaire:camionnaire')
-    else:
-        # Redirection par défaut pour les utilisateurs sans groupe spécifié
-        return redirect('client:client')  # Vous devez définir cette vue
+        if not request.path.startswith('/camionnaire/'):
+            return redirect('camionnaire:camionnaire')
+        
+        
 # Create your views here.
+@group_required('client', login_url='/account_login/')
+@login_required(login_url='/account_login/')
 def client(request):
+    user = request.user  
     now = datetime.now()
     if now.hour < 12:
         message = "Bonjour"
     else:
         message = "Bonsoir"
     context = {
-        'message': message
+        'message': message,
+        'user': user
     }
     return render(request, 'client/client.html', context)
 
