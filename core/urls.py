@@ -40,7 +40,7 @@ urlpatterns = [
     path('settings/', include('main_apps.settings.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(), name='account_login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='account_logout'),
-    path('accounts/', include('allauth.urls')),
+    path('account/', include('allauth.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

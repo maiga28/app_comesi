@@ -25,10 +25,8 @@ from django.contrib.auth.decorators import permission_required
 @group_required('Camionneurs')
 @login_required(login_url='/account_login/')
 def camionnaire(request):
-    if user.groups.filter(name='Camionneurs').exists():
-        return redirect('camionnaire:camionnaire')
-    else:
-        return redirect('account_login')
+
+    
     now = datetime.now()
     if now.hour < 12:
         message = "Bonjour"
@@ -41,18 +39,23 @@ def camionnaire(request):
 
 
 
-
+@group_required('admin')
+@login_required(login_url='/account_login/')
 def list_camionnaire(request):
     return render(request, 'camionnaire/list_camionnaire.html')
 
-@login_required
-@permission_required("polls.add_choice", raise_exception=True)
+@group_required('admin')
+@login_required(login_url='/account_login/')
 def ajouter_camionnaire(request):
-    return render(request, 'camionnaire/ajouter_camionnaire.html')
+    return render(request, 'camionnaire/aCamionneursjouter_camionnaire.html')
 
+@group_required('admin')
+@login_required(login_url='/account_login/')
 def update_camionnaire(request):
     return render(request, 'camionnaire/update_camionnaire.html')
 
+@group_required('admin')
+@login_required(login_url='/account_login/')
 def delete_camionnaire(request):
     return render(request, 'camionnaire/delete_camionnaire.html')
 

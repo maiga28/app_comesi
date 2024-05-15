@@ -30,18 +30,9 @@ def user_logged_in_callback(sender, request, user, **kwargs):
         return redirect('client:client')  # Vous devez définir cette vue
 
 @group_required('admin')
-@login_required
+@login_required(login_url='/account_login/')
 def gestion(request):
-    
-    if user.groups.filter(name='client').exists():
-        return redirect('client:client')
-    elif user.groups.filter(name='admin').exists():
-        return redirect('gestion:gestion')
-    elif user.groups.filter(name='Camionneurs').exists():
-        return redirect('camionnaire:camionnaire')
-    else:
-        # Redirection par défaut pour les utilisateurs sans groupe spécifié
-        return redirect('client:client')  # Vous devez définir cette vue
+     
     users = User.objects.all()
     now = datetime.now()
     if now.hour < 12:

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_tailwind',
     'allauth',
+    'main_apps',
 
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
@@ -236,7 +237,7 @@ EMAIL_HOST_USER = 'sidimaiga.work@gmail.com'
 EMAIL_HOST_PASSWORD = 'kcgs znsj yrig unzr'
 
 
-LOGIN_REDIRECT_URL = '/settings/'
+LOGIN_REDIRECT_URL = '/client/'
 # Logique pour rediriger les utilisateurs en fonction de leur groupe
 
 LOGOUT_REDIRECT_URL = '/account/login/'
