@@ -40,15 +40,16 @@ INSTALLED_APPS = [
     'compressor',  # new
     'main_apps.gestion',
     'main_apps.client',
-    'main_apps.camionnaire',
+    'main_apps.comionneur',
     'main_apps.facture',
     'main_apps.demande_transport',
     'main_apps.settings',
+    'api.forms_api',
     'crispy_forms',
     'crispy_tailwind',
     'allauth',
     'main_apps',
-
+    'rest_framework',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.yahoo',

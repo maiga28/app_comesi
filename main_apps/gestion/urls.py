@@ -1,13 +1,13 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
 
-from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
+
 
 app_name = 'gestion'
 
 urlpatterns = [
-    path('',views.gestion, name='gestion'),
+    
+    path('', views.gestion, name='gestion'),
     
 ]
 

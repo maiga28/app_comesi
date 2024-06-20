@@ -1,0 +1,328 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+    <main class="ckut6">
+
+        <div class="flex c4ijw">
+            <!-- Profile body -->
+            <div class="flex cwis9 cqyxl cbr9x cgpmj chmlm ckut6" :class="profileSidebarOpen ? 'translate-x-1/3' : 'translate-x-0'">
+                
+                <!-- Profile background -->
+                <div class="c3jt4 cr58u c4ijw c2qp8">
+                    <img class="cbq5m crszu c3ff8" src="{{camionneur.photo.urls}}" width="979" height="220" alt="Profile background">
+                    <!-- Close button -->
+                    <button class="c7975 ceqwg cnn59 cwqbk csu7j csmh2 cib48 cymji" @click.stop="profileSidebarOpen = !profileSidebarOpen" aria-controls="profile-sidebar" :aria-expanded="profileSidebarOpen">
+                        <span class="cbl3h">Close sidebar</span>
+                        <svg class="c3wll ceob2 chcsl" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z"></path>
+                        </svg>
+                    </button>        
+                </div>
+               
+                <!-- Content -->
+                <div class="c4ijw clpyc c9r0z caadu">
+
+                    <!-- Pre-header -->
+                    <div class="cfm0n cgnbv crkc7">
+
+                        <div class="flex items-center cyqq9 coraz cv5du chmlm">
+
+                            <!-- Avatar -->
+                            <div class="inline-flex clxmc c0h30 clujp c958j">
+                                <img class="rounded-full cmvk2 c5khs cnqmu" src="{% static "images/user-128-01.jpg" %}" width="128" height="128" alt="Avatar">
+                            </div>
+                
+                            <!-- Actions -->
+                            <div class="flex cwkb0 cbzfo">
+                                <button class="rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 c46uo cm7vt cl0q9 c7n6y c2qsw">
+                                    <svg class="czgoy c3wll ct4p7 cm474" viewBox="0 0 16 4">
+                                        <circle cx="8" cy="2" r="2"></circle>
+                                        <circle cx="2" cy="2" r="2"></circle>
+                                        <circle cx="14" cy="2" r="2"></circle>
+                                    </svg>
+                                </button>
+                                <button class="rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 c46uo cm7vt cl0q9 c7n6y c2qsw">
+                                    <svg class="text-indigo-500 c3wll cgmrc cm474" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7Zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8Z"></path>
+                                    </svg>
+                                </button>
+                                <button class="cfeqx cf1ce ceqwg cjusy">
+                                    <svg class="c3wll c7n6y" width="11" height="8" viewBox="0 0 11 8">
+                                        <path d="m.457 4.516.969-.99 2.516 2.481L9.266.702l.985.99-6.309 6.284z"></path>
+                                    </svg>
+                                    <span class="c9o7o">Following</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Header -->
+                    <header class="ca943 cob4g crkc7">
+                        <!-- Name -->
+                        <div class="inline-flex cxbmt c7j98">
+                            <h1 class="text-slate-800 dark:text-slate-100 font-bold cjefr">Carolyn McNeail</h1>
+                            <svg class="cz5ai c3wll c7n6y c9o7o cgmrc cm474" viewBox="0 0 16 16">
+                                <path d="M13 6a.75.75 0 0 1-.75-.75 1.5 1.5 0 0 0-1.5-1.5.75.75 0 1 1 0-1.5 1.5 1.5 0 0 0 1.5-1.5.75.75 0 1 1 1.5 0 1.5 1.5 0 0 0 1.5 1.5.75.75 0 1 1 0 1.5 1.5 1.5 0 0 0-1.5 1.5A.75.75 0 0 1 13 6ZM6 16a1 1 0 0 1-1-1 4 4 0 0 0-4-4 1 1 0 0 1 0-2 4 4 0 0 0 4-4 1 1 0 1 1 2 0 4 4 0 0 0 4 4 1 1 0 0 1 0 2 4 4 0 0 0-4 4 1 1 0 0 1-1 1Z"></path>
+                            </svg>
+                        </div>
+                        <!-- Bio -->
+                        <div class="text-sm cvavu">Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer &amp; PHP Lover.</div>
+                        <!-- Meta -->
+                        <div class="flex flex-wrap justify-center cejow cwh9k">
+                            <div class="flex items-center">
+                                <svg class="ciz4v czgoy c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
+                                    <path d="M8 8.992a2 2 0 1 1-.002-3.998A2 2 0 0 1 8 8.992Zm-.7 6.694c-.1-.1-4.2-3.696-4.2-3.796C1.7 10.69 1 8.892 1 6.994 1 3.097 4.1 0 8 0s7 3.097 7 6.994c0 1.898-.7 3.697-2.1 4.996-.1.1-4.1 3.696-4.2 3.796-.4.3-1 .3-1.4-.1Zm-2.7-4.995L8 13.688l3.4-2.997c1-1 1.6-2.198 1.6-3.597 0-2.798-2.2-4.996-5-4.996S3 4.196 3 6.994c0 1.399.6 2.698 1.6 3.697 0-.1 0-.1 0 0Z"></path>
+                                </svg>
+                                <span class="text-sm text-slate-500 dark:text-slate-400 c626f cw92y c9o7o">Milan, IT</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="ciz4v czgoy c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
+                                    <path d="M11 0c1.3 0 2.6.5 3.5 1.5 1 .9 1.5 2.2 1.5 3.5 0 1.3-.5 2.6-1.4 3.5l-1.2 1.2c-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.1-1.2c.6-.5.9-1.3.9-2.1s-.3-1.6-.9-2.2C12 1.7 10 1.7 8.9 2.8L7.7 4c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4l1.2-1.1C8.4.5 9.7 0 11 0ZM8.3 12c.4-.4 1-.5 1.4-.1.4.4.4 1 0 1.4l-1.2 1.2C7.6 15.5 6.3 16 5 16c-1.3 0-2.6-.5-3.5-1.5C.5 13.6 0 12.3 0 11c0-1.3.5-2.6 1.5-3.5l1.1-1.2c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4L2.9 8.9c-.6.5-.9 1.3-.9 2.1s.3 1.6.9 2.2c1.1 1.1 3.1 1.1 4.2 0L8.3 12Zm1.1-6.8c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4l-4.2 4.2c-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l4.2-4.2Z"></path>
+                                </svg>
+                                <a class="text-sm text-indigo-500 cuv1l cdi3j c626f cw92y c9o7o" href="#0">carolinmcneail.com</a>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Tabs -->
+                    <div class="c4ijw crkc7">
+                        <div class="ce4zx cr58u csmh2 csp9v c3ff8 cu33r" aria-hidden="true"></div>
+                        <ul class="text-sm flex cmgrv cz385 cmaja cw92y cd9eg cx5ci c4ijw chz8s">
+                            <li class="cqrxi co2lm cp2yi clw8k cc4ip cdnpc c13j6 cq2g3">
+                                <a class="block text-indigo-500 c626f czkg9 cl943 c1ow6" href="#0">General</a>
+                            </li>
+                            <li class="cqrxi co2lm cp2yi clw8k cc4ip cdnpc c13j6 cq2g3">
+                                <a class="block text-slate-500 dark:text-slate-400 c6xw6 cxc4n c626f c1ow6" href="#0">Connections</a>
+                            </li>
+                            <li class="cqrxi co2lm cp2yi clw8k cc4ip cdnpc c13j6 cq2g3">
+                                <a class="block text-slate-500 dark:text-slate-400 c6xw6 cxc4n c626f c1ow6" href="#0">Contributions</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Profile content -->
+                    <div class="flex cmca2 cisj7 chmlm">
+
+                        <!-- Main content -->
+                        <div class="c21k4 cm1dv cy6kd ce97l">
+                
+                            <!-- About Me -->
+                            <div>
+                                <h2 class="text-slate-800 dark:text-slate-100 cqosy c7j98">About Me</h2>
+                                <div class="text-sm cbfhc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                    <p>Consectetur adipiscing elit, sed do eiusmod tempor magna aliqua.</p>
+                                </div>
+                            </div>
+                
+                            <!-- Departments -->
+                            <div>
+                                <h2 class="text-slate-800 dark:text-slate-100 cqosy c7j98">Departments</h2>
+                                <!-- Cards -->
+                                <div class="cb89g ctxcf c5va1">
+
+                                    <!-- Card -->
+                                    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-sm cl0q9 c5mbg">
+                                        <!-- Card header -->
+                                        <div class="flex items-center c32al c7j98 ckut6">
+                                            <div class="flex items-center justify-center rounded-full mr-2 c1xtk c7n6y chmgx c6dxj">
+                                                <img class="csib2" src="{% static "images/icon-03.svg" %}" width="14" height="14" alt="Icon 03">
+                                            </div>
+                                            <div class="c32al">
+                                                <span class="text-sm text-slate-800 dark:text-slate-100 cw92y">Acme Marketing</span>
+                                            </div>
+                                        </div>
+                                        <!-- Card content -->
+                                        <div class="text-sm cvavu">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</div>
+                                        <!-- Card footer -->
+                                        <div class="flex items-center cmgwo">
+                                            <!-- Avatars group -->
+                                            <div class="flex c2707 cqcol">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-02.jpg" %}" width="24" height="24" alt="Avatar">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-03.jpg" %}" width="24" height="24" alt="Avatar">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-04.jpg" %}" width="24" height="24" alt="Avatar">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-05.jpg" %}" width="24" height="24" alt="Avatar">
+                                            </div>
+                                            <!-- Link -->
+                                            <div>
+                                                <a class="text-sm text-indigo-500 cuv1l cdi3j cw92y" href="#0">View -&gt;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card -->
+                                    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-sm cl0q9 c5mbg">
+                                        <!-- Card header -->
+                                        <div class="flex items-center c32al c7j98 ckut6">
+                                            <div class="flex items-center justify-center rounded-full mr-2 c1xtk c7n6y chmgx c6dxj">
+                                                <img class="csib2" src="{% static "images/icon-02.svg" %}" width="14" height="14" alt="Icon 02">
+                                            </div>
+                                            <div class="c32al">
+                                                <span class="text-sm text-slate-800 dark:text-slate-100 cw92y">Acme Product</span>
+                                            </div>
+                                        </div>
+                                        <!-- Card content -->
+                                        <div class="text-sm cvavu">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</div>
+                                        <!-- Card footer -->
+                                        <div class="flex items-center cmgwo">
+                                            <!-- Avatars group -->
+                                            <div class="flex c2707 cqcol">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-06.jpg" %}" width="24" height="24" alt="Avatar">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-03.jpg" %}" width="24" height="24" alt="Avatar">
+                                                <img class="rounded-full cwoo7 c5khs cae64 cbe4h" src="{% static "images/avatar-01.jpg" %}" width="24" height="24" alt="Avatar">
+                                            </div>
+                                            <!-- Link -->
+                                            <div>
+                                                <a class="text-sm text-indigo-500 cuv1l cdi3j cw92y" href="#0">View -&gt;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                
+                            <!-- Work History -->
+                            <div>
+                                <h2 class="text-slate-800 dark:text-slate-100 cqosy c7j98">Work History</h2>
+                                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-sm cl0q9 c5mbg">
+                                    <ul class="cd0mw">
+
+                                        <!-- Item -->
+                                        <li class="cyqq9 cxbdy clk9r">
+                                            <div class="flex items-center text-sm c50fy">
+                                                <!-- Icon -->
+                                                <div class="rounded-full ctnuc c7n6y c40t1 czt1n chmgx c6dxj">
+                                                    <svg class="c2rtb c3wll chmgx c6dxj" viewBox="0 0 32 32">
+                                                        <path d="M21 14a.75.75 0 0 1-.75-.75 1.5 1.5 0 0 0-1.5-1.5.75.75 0 1 1 0-1.5 1.5 1.5 0 0 0 1.5-1.5.75.75 0 1 1 1.5 0 1.5 1.5 0 0 0 1.5 1.5.75.75 0 1 1 0 1.5 1.5 1.5 0 0 0-1.5 1.5.75.75 0 0 1-.75.75Zm-7 10a1 1 0 0 1-1-1 4 4 0 0 0-4-4 1 1 0 0 1 0-2 4 4 0 0 0 4-4 1 1 0 0 1 2 0 4 4 0 0 0 4 4 1 1 0 0 1 0 2 4 4 0 0 0-4 4 1 1 0 0 1-1 1Z"></path>
+                                                    </svg>
+                                                </div>
+                                                <!-- Position -->
+                                                <div>
+                                                    <div class="text-slate-800 dark:text-slate-100 cw92y">Senior Product Designer</div>
+                                                    <div class="flex items-center c626f cmaja cwkb0">
+                                                        <div>Remote</div>
+                                                        <div class="cdfsn czgoy">·</div>
+                                                        <div>April, 2020 - Today</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tags -->
+                                            <div class="c4e2h cpppv crgeu">
+                                                <ul class="flex flex-wrap -m-1 cexh7">
+                                                    <li class="m-1">
+                                                        <button class="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 csq8i cxcbl c0qeg">Marketing</button>
+                                                    </li>
+                                                    <li class="m-1">
+                                                        <button class="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 csq8i cxcbl c0qeg">+4</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <!-- Item -->
+                                        <li class="cyqq9 cxbdy clk9r">
+                                            <div class="flex items-center text-sm c50fy">
+                                                <!-- Icon -->
+                                                <div class="rounded-full cf1ce c7n6y c40t1 czt1n chmgx c6dxj">
+                                                    <svg class="text-indigo-50 c3wll chmgx c6dxj" viewBox="0 0 32 32">
+                                                        <path d="M8.994 20.006a1 1 0 0 1-.707-1.707l4.5-4.5a1 1 0 0 1 1.414 0l3.293 3.293 4.793-4.793a1 1 0 1 1 1.414 1.414l-5.5 5.5a1 1 0 0 1-1.414 0l-3.293-3.293L9.7 19.713a1 1 0 0 1-.707.293Z"></path>
+                                                    </svg>
+                                                </div>
+                                                <!-- Position -->
+                                                <div>
+                                                    <div class="text-slate-800 dark:text-slate-100 cw92y">Product Designer</div>
+                                                    <div class="flex items-center c626f cmaja cwkb0">
+                                                        <div>Milan, IT</div>
+                                                        <div class="cdfsn czgoy">·</div>
+                                                        <div>April, 2018 - April 2020</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tags -->
+                                            <div class="c4e2h cpppv crgeu">
+                                                <ul class="flex flex-wrap -m-1 cexh7">
+                                                    <li class="m-1">
+                                                        <button class="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 csq8i cxcbl c0qeg">Marketing</button>
+                                                    </li>
+                                                    <li class="m-1">
+                                                        <button class="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 csq8i cxcbl c0qeg">+4</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <!-- Item -->
+                                        <li class="cyqq9 cxbdy clk9r">
+                                            <div class="flex items-center text-sm c50fy">
+                                                <!-- Icon -->
+                                                <div class="rounded-full cf1ce c7n6y c40t1 czt1n chmgx c6dxj">
+                                                    <svg class="text-indigo-50 c3wll chmgx c6dxj" viewBox="0 0 32 32">
+                                                        <path d="M8.994 20.006a1 1 0 0 1-.707-1.707l4.5-4.5a1 1 0 0 1 1.414 0l3.293 3.293 4.793-4.793a1 1 0 1 1 1.414 1.414l-5.5 5.5a1 1 0 0 1-1.414 0l-3.293-3.293L9.7 19.713a1 1 0 0 1-.707.293Z"></path>
+                                                    </svg>
+                                                </div>
+                                                <!-- Position -->
+                                                <div>
+                                                    <div class="text-slate-800 dark:text-slate-100 cw92y">Product Designer</div>
+                                                    <div class="flex items-center c626f cmaja cwkb0">
+                                                        <div>Milan, IT</div>
+                                                        <div class="cdfsn czgoy">·</div>
+                                                        <div>April, 2018 - April 2020</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tags -->
+                                            <div class="c4e2h cpppv crgeu">
+                                                <ul class="flex flex-wrap -m-1 cexh7">
+                                                    <li class="m-1">
+                                                        <button class="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 csq8i cxcbl c0qeg">Marketing</button>
+                                                    </li>
+                                                    <li class="m-1">
+                                                        <button class="inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 csq8i cxcbl c0qeg">+4</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                
+                        </div>
+
+                        <!-- Sidebar -->
+                        <aside class="clmw6 cd0mw c1hvd">
+                            <div class="text-sm">
+                                <h3 class="text-slate-800 dark:text-slate-100 cw92y">Title</h3>
+                                <div>Senior Product Designer</div>
+                            </div>
+                            <div class="text-sm">
+                                <h3 class="text-slate-800 dark:text-slate-100 cw92y">Location</h3>
+                                <div>Milan, IT - Remote</div>
+                            </div>
+                            <div class="text-sm">
+                                <h3 class="text-slate-800 dark:text-slate-100 cw92y">Email</h3>
+                                <div><a href="https://preview.cruip.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dab9bba8b5b6b3b4b7b9b4bfbbb3b69abbb9b7bff4b9b5b7">[email&#160;protected]</a></div>
+                            </div>
+                            <div class="text-sm">
+                                <h3 class="text-slate-800 dark:text-slate-100 cw92y">Birthdate</h3>
+                                <div>4 April, 1987</div>
+                            </div>
+                            <div class="text-sm">
+                                <h3 class="text-slate-800 dark:text-slate-100 cw92y">Joined Acme</h3>
+                                <div>7 April, 2017</div>
+                            </div>
+                        </aside>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+{% endblock content %}

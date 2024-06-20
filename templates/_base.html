@@ -28,7 +28,10 @@
             document.querySelector('html').classList.add('dark');
             document.querySelector('html').style.colorScheme = 'dark';
         }
-    </script> 
+    </script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
 </head>
 
 <body class="dark:text-slate-400 c3jt4 c6w4h c6vqo c0ndv csf1w" :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))">
@@ -164,7 +167,7 @@
                                             </a>
                                         </li>
                                         <li class="cyf82 ci4cg">
-                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "camionnaire:ajouter_camionnaire" %}">
+                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "forms_api:ajouter_camionneur" %}">
                                                 <span class="text-sm 2xl:opacity-100 cjbqm cd0k1 cbunn ch8aq cw92y">Ajouter</span>
                                             </a>
                                         </li>
@@ -622,3 +625,5 @@
 </body>
 
 </html>
+{% block scripts %}
+{% endblock %}

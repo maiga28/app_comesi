@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime
-from main_apps.camionnaire.models import *
-from main_apps.camionnaire.models import *
+from main_apps.comionneur.models import *
 from main_apps.client.models import *
 from main_apps.settings.models import *
 
@@ -24,7 +23,7 @@ def user_logged_in_callback(sender, request, user, **kwargs):
     elif user.groups.filter(name='admin').exists():
         return redirect('gestion:gestion')
     elif user.groups.filter(name='Camionneurs').exists():
-        return redirect('camionnaire:camionnaire')
+        return redirect('comionneur:camionneur')
     else:
         # Redirection par défaut pour les utilisateurs sans groupe spécifié
         return redirect('client:client')  # Vous devez définir cette vue
