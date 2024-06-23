@@ -36,7 +36,7 @@ urlpatterns = [
     path('client/', include('main_apps.client.urls')),
     path('facture/', include('main_apps.facture.urls')),
     path('demande/', include('main_apps.demande_transport.urls')),
-    path('comionneur/', include('main_apps.comionneur.urls')),
+    path('camionneur/', include('main_apps.comionneur.urls')),
     path('settings/', include('main_apps.settings.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(), name='account_login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='account_logout'),
@@ -44,6 +44,8 @@ urlpatterns = [
     path('api/', include('api.forms_api.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
     path('<path:unknown_path>', custom_page_not_found),

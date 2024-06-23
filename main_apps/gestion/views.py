@@ -32,7 +32,7 @@ def user_logged_in_callback(sender, request, user, **kwargs):
 @login_required(login_url='/account_login/')
 def gestion(request):
      
-    users = User.objects.all()
+    users = Client.objects.all()
     now = datetime.now()
     if now.hour < 12:
         message = "Bonjour"

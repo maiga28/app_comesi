@@ -1,7 +1,10 @@
 from django.db import models
-# from main_apps.gestion.models import *
+from django.contrib.auth.models import AbstractUser
 
-class Camionneur(models.Model):
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class Camionneur(AbstractUser):
     STATUS_CHOICES = [
         ('actif', 'Actif'),
         ('inactif', 'Inactif'),
@@ -15,17 +18,46 @@ class Camionneur(models.Model):
     date_de_naissance = models.DateField()
     adresse = models.CharField(max_length=255)
     numero_de_telephone = models.CharField(max_length=20)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     numero_de_permis = models.CharField(max_length=50)
     experience = models.IntegerField()  # en années
     entreprise_employeur = models.CharField(max_length=100)
     type_de_camion_conduit = models.CharField(max_length=100)
     disponibilite = models.BooleanField(default=True)
     statut_d_emploi = models.CharField(max_length=10, choices=STATUS_CHOICES, default='actif')
-    
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='camionneur_set',  # Add a unique related_name
+        blank=True,
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        verbose_name='groups',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='camionneur_set',  # Add a unique related_name
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions',
+    )
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'numero_de_telephone']
+
+    class Meta:
+        verbose_name = 'Camionneur'
+        verbose_name_plural = 'Camionneurs'
 
     def __str__(self):
-        return f"{self.nom} {self.prenom}"
+        return self.username
+
+    def get_full_name(self):
+        return f"{self.prenom} {self.nom}"
+
+    def has_photo(self):
+        return self.photo and hasattr(self.photo, 'url')
+
+
 
 class Camion(models.Model):
     STATUT_CHOICES = [

@@ -9,7 +9,7 @@
                 
                 <!-- Profile background -->
                 <div class="c3jt4 cr58u c4ijw c2qp8">
-                    <img class="cbq5m crszu c3ff8" src="{{camionneur.photo.urls}}" width="979" height="220" alt="Profile background">
+                    <img class="cbq5m crszu c3ff8" src="{{camionneurs.photo}}" width="979" height="220" alt="Profile background">
                     <!-- Close button -->
                     <button class="c7975 ceqwg cnn59 cwqbk csu7j csmh2 cib48 cymji" @click.stop="profileSidebarOpen = !profileSidebarOpen" aria-controls="profile-sidebar" :aria-expanded="profileSidebarOpen">
                         <span class="cbl3h">Close sidebar</span>
@@ -18,7 +18,10 @@
                         </svg>
                     </button>        
                 </div>
-               
+                <div id="app">
+                    {{ message }}
+                    <button @click="updateMessage">Cliquez-moi</button>
+                </div> 
                 <!-- Content -->
                 <div class="c4ijw clpyc c9r0z caadu">
 
@@ -325,4 +328,17 @@
         </div>
 
     </main>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Bonjour de Vue.js!'
+            },
+            methods: {
+                updateMessage: function() {
+                    this.message = 'Vous avez cliqué sur le bouton!';
+                }
+            }
+        });
+    </script>
 {% endblock content %}

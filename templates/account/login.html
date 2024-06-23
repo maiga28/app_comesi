@@ -31,7 +31,7 @@
 
             <!-- Form -->
             
-            <form class="grid gap-y-4" method="post" action="{% url 'account_login' %}" tags="entrance,login" >
+            <form class="grid gap-y-4" method="post" action="{% url 'account_signup' %}" tags="entrance,login" >
               {% csrf_token %}
               <div class="input-field">             
                 {{ form|crispy }}

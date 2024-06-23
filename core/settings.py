@@ -239,9 +239,9 @@ EMAIL_HOST_PASSWORD = 'kcgs znsj yrig unzr'
 
 
 LOGIN_REDIRECT_URL = '/client/'
-# Logique pour rediriger les utilisateurs en fonction de leur groupe
+# Logique pour rediriger les utilisateurs enMEDIA_URL = '/media/' fonction de leur groupe
 
 LOGOUT_REDIRECT_URL = '/account/login/'
 SIGNUP_REDIRECT_URL = '/account/login/'
-# AUTH_USER_MODEL = "gestion.Proprietaire"
-# AUTH_USER_MODEL = 'profiles.CustomUser'
+AUTH_USER_MODEL = "comionneur.Camionneur"
+AUTH_USER_MODEL = 'client.Client'

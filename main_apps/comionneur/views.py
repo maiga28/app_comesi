@@ -1,5 +1,6 @@
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from main_apps.decorators import group_required
 from main_apps.comionneur.models import *
@@ -8,6 +9,11 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth.decorators import permission_required
 from api.forms_api.forms import *
+from django.db import IntegrityError
+from django.core.paginator import Paginator
+
+# from django.db import IntegrityError
+# from django.http import JsonResponse
 
 
 @receiver(user_logged_in)
@@ -50,32 +56,100 @@ def camionneur(request):
 
 @group_required('admin')
 @login_required(login_url='/account_login/')
-def list_camionnaire(request):
+def list_camionneur(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        data = {'message': 'Bonjour de Django!'}
+        return JsonResponse(data)
+    
     camionneurs = Camionneur.objects.all()
+    paginator = Paginator(camionneurs, 8)  # 10 camionneurs par page
+
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(proprietaires, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number) 
+    if request.method == "POST":
+        form = AjouterCamionneurForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('comionneur:list_camionneur')  # Redirige vers une page de succès
+            except IntegrityError:
+                form.add_error('username', "Ce nom d'utilisateur existe déjà. Veuillez en choisir un autre.")
+        else:
+            # Si le formulaire n'est pas valide, récupérez les données nettoyées pour les afficher
+            nom = form.cleaned_data.get('nom', '')
+            prenom = form.cleaned_data.get('prenom', '')
+            numero_de_telephone = form.cleaned_data.get('numero_de_telephone', '')
+            email = form.cleaned_data.get('email', '')
+            entreprise_employeur = form.cleaned_data.get('entreprise_employeur', '')
+            numero_de_permis = form.cleaned_data.get('numero_de_permis', '')
+            experience = form.cleaned_data.get('experience', '')
+            type_de_camion_conduit = form.cleaned_data.get('type_de_camion_conduit', '')
+            date_de_naissance = form.cleaned_data.get('date_de_naissance', '')
+            photo = form.cleaned_data.get('photo', None)
+            background = form.cleaned_data.get('background', None)
+    else:
+        form = AjouterCamionneurForm()
+    
     
     context = {
-        'camionneurs': camionneurs
+        'form': form,
+        'camionneurs': camionneurs,
+        'camionneurs': page_obj,
+        'page_obj': page_obj
     }
+    # data = {'message': 'Bonjour de Django!'}
+    
     return render(request, 'camionneur/list_camionneur.html', context)
 
 @group_required('admin')
 @login_required(login_url='/account_login/')
 def detail_camionneur(request,pk):
     camionneurs = get_object_or_404(Camionneur, id=pk)
-    # context = {
-    #     'camionneurs':camionneurs
-    # }
-    return render(request, 'camionneur/detail_camionneur.html', {'camionneurs':camionneurs})
+    context = {
+        'camionneurs':camionneurs
+    }
+    return render(request, 'camionneur/detail_camionneur.html', context)
 
-@group_required('admin')
 @login_required(login_url='/account_login/')
-def update_camionnaire(request):
-    return render(request, 'camionnaire/update_camionnaire.html')
+@group_required('admin')
+def detail_camionneur(request, pk):
+    camionneurs = get_object_or_404(Camionneur, id=pk)
+    context = {
+        'camionneurs': camionneurs
+    }
+    return render(request, 'camionneur/detail_camionneur.html', context)
 
-@group_required('admin')
 @login_required(login_url='/account_login/')
-def delete_camionnaire(request):
-    return render(request, 'camionnaire/delete_camionnaire.html')
+@group_required('admin')
+def update_camionneur(request,pk):
+    camionneur = get_object_or_404(Camionneur, id=pk)
+    if request.method == "POST":
+        form = UpdateCamionneurForm(request.POST, request.FILES, instance=camionneur)
+        if form.is_valid():
+            form.save()
+            return redirect('comionneur:list_camionneur')
+    else:
+        form = UpdateCamionneurForm(instance=camionneur)
+    context = {
+        'form': form,
+        'camionneur': camionneur
+    }
+    return render(request, 'camionneur/update_camionneur.html', context)
+
+@login_required(login_url='/account_login/')
+@group_required('admin')
+def delete_camionneur(request, pk):
+    camionneur = get_object_or_404(Camionneur, id=pk)
+    if request.method == "POST":
+        camionneur.delete()
+        return redirect('camionneur:list_camionneur')
+    context = {
+        'camionneur': camionneur
+    }
+    return render(request, 'camionneur/delete_camionneur.html', context)
 
 # def ajouter_camionnaire(request):
 #     return render(request, 'camionnaire/ajouter_camionnaire.html')

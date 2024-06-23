@@ -31,7 +31,10 @@
     </script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body class="dark:text-slate-400 c3jt4 c6w4h c6vqo c0ndv csf1w" :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))">
@@ -157,20 +160,20 @@
                                 <div class="2xl:block cofpc cpbr8 caqfm">
                                     <ul class="hidden c5xk8 ctmd2" :class="open ? 'cylx5' : 'hidden'">
                                         <li class="cyf82 ci4cg">
-                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "camionnaire:camionnaire" %}">
+                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "comionneur:camionneur" %}">
                                                 <span class="text-sm 2xl:opacity-100 cjbqm cd0k1 cbunn ch8aq cw92y">Camionnaires</span>
                                             </a>
                                         </li>
                                         <li class="cyf82 ci4cg">
-                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "camionnaire:list_camionnaire" %}">
+                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "comionneur:list_camionneur" %}">
                                                 <span class="text-sm 2xl:opacity-100 cjbqm cd0k1 cbunn ch8aq cw92y">Liste</span>
                                             </a>
                                         </li>
-                                        <li class="cyf82 ci4cg">
-                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "forms_api:ajouter_camionneur" %}">
+                                        {% comment %} <li class="cyf82 ci4cg">
+                                            <a class="block critd czgoy crp72 c5mjj c32al" href="{% url "comionneur:ajouter_camionneur" %}">
                                                 <span class="text-sm 2xl:opacity-100 cjbqm cd0k1 cbunn ch8aq cw92y">Ajouter</span>
                                             </a>
-                                        </li>
+                                        </li> {% endcomment %}
                                     </ul>
                                 </div>
                             </li>
@@ -572,7 +575,11 @@
                             <!-- User button -->
                             <div class="inline-flex c4ijw" x-data="{ open: false }">
                                 <button class="inline-flex justify-center items-center c2djl" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
-                                    <img class="rounded-full chmgx c6dxj" src="{% static "images/user-avatar-32.png" %}" width="32" height="32" alt="User">
+                                    {% if request.user.photo %}
+                                        <img class="rounded-full chmgx c6dxj" {{ request.user.photo }} width="32" height="32">
+                                    {% else %}
+                                        <img class="rounded-full chmgx c6dxj" src="{% static 'path/to/default/image.jpg' %}" width="32" height="32">
+                                    {% endif %}
                                     <div class="flex items-center c32al">
                                         <span class="text-sm cyefr c0vsa ch1ih cw92y c32al c9o7o">{{request.user.username}}.</span>
                                         <svg class="w-3 h-3 czgoy c3wll c7n6y csib2" viewBox="0 0 12 12">
@@ -595,6 +602,7 @@
                                     </ul>                
                                 </div>
                             </div>
+
 
                         </div>
 

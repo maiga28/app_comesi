@@ -8,23 +8,20 @@
       <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
        vous allez mettre a jour un camionneur ?
       </h1>
-      <p class="mt-1 text-gray-600 dark:text-neutral-400">
-        Etes vous sure ?
-      </p>
     </div>
 
     </secsion class="mt-12">
       <!-- Form -->
       <div class='p-12'>
-        <form class="form-control" action="{% url "forms_api:ajouter_camionneur" %}" method="post">
-          <div class="flex flex-wrap gap-10 -mx-3 mb-6 space-x-4 mt-8 rounded-full">
+        <form class="form-group-sm" action="{% url 'comionneur:update_camionneur' pk=camionneur.id %}" method="post">
+          <div class="flex flex-wrap gap-6 -mx-3 mb-6 space-x-4 mt-8 rounded-full">
               {% csrf_token %}
               {{ form|crispy }}
           </div>
 
           <div class='flex justify-center gap-6'>
               <input class='btn cfeqx cf1ce ceqwg mt-5 p-4' type="submit" value="Submit">
-              <a class="btn dark:bg-slate-800 p-4 border-slate-200 mt-5 dark:border-slate-700 c46uo cm7vt c6tg6" href="{% url 'gestion:gestion' %}">Cancel</a>
+              <a class="btn dark:bg-slate-800 p-4 border-slate-200 mt-5 dark:border-slate-700 c46uo cm7vt c6tg6" href="{% url 'comionneur:list_camionneur' %}">Cancel</a>
           </div>
 
                       

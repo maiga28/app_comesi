@@ -91,7 +91,7 @@
                                     <section>
                                         <div class="flex items-center">
                                             <div class="mr-4">
-                                                <img class="rounded-full chkq1 c4a13" src="{% static "images/user-avatar-80.png" %}" width="80" height="80" alt="User upload">
+                                                <img class="rounded-full chkq1 c4a13" src="{{ request.user.photo }}" width="80" height="80" alt="User upload">
                                             </div>
                                             <button class="cfeqx cf1ce ceqwg cjusy">Change</button>
                                         </div>
