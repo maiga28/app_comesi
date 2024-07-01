@@ -43,7 +43,7 @@ urlpatterns = [
     path('account/', include('allauth.urls')),
     path('api/', include('api.forms_api.urls')),
     
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

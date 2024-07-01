@@ -14,6 +14,7 @@ urlpatterns = [
     path('detail_camionneur/<int:pk>/', views.detail_camionneur, name='detail_camionneur'),
     path('delete_camionneur/<int:pk>/',views.delete_camionneur, name='delete_camionneur'),
     path('update_camionneur/<int:pk>/',views.update_camionneur, name='update_camionneur'),
+    path('search/', views.search_view, name='search'),
 ]
 
 

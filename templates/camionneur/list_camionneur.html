@@ -2,6 +2,35 @@
 {% load tailwind_filters %}
 {% load static %}
 {% block content %}
+
+<!-- Start -->
+{% if messages %}
+    <div x-show="open" x-data="{ open: true }" role="alert">
+        {% for message in messages %}
+            <div class="rounded-sm text-sm ck3g6 ceqwg c9r0z cfnh0">
+                <div class="flex cmgwo cxbmt c3ff8">
+                    <div class="flex">
+                        {% if message.tags == 'success' %}
+                            <svg class="c3wll c9r0f cnn59 c7n6y czt1n cgmrc cm474" viewBox="0 0 16 16">
+                                <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM7 11.4L3.6 8 5 6.6l2 2 4-4L12.4 6 7 11.4z"></path>
+                            </svg>
+                        {% endif %}
+                        <div class="cw92y">{{ message }}</div>
+                    </div>
+                    <button class="ml-3 csvyn c9r0f csask" @click="open = false">
+                        <div class="cbl3h">Close</div>
+                        <svg class="c3wll cgmrc cm474">
+                            <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+<!-- End -->
+
+
             <main class="ckut6">
                 <div class="cewy4 clpyc cj3hv cofxq c3ff8 c9r0z c0ycj">
 
@@ -9,30 +38,23 @@
                     <div class="cyqq9 cxbdy clk9r ce97l">
 
                         <!-- Left: Title -->
-                        <div class="clxmc c958j">
-                            <h1 class="text-slate-400 dark:text-slate-100 font-bold cy709 cjefr">Liste des camionneurs. ✨</h1>
+                      
+                        <div class="bg-white p-4 gap-4 space-y-4 shadow dark:bg-slate-800 h-12">
+                            <p class=""> Hello word<p>
                         </div>
-
+                        
                         <!-- Right: Actions -->
-                        <div class="cnt8v cexh7 cuh4n cy6ju ck4mf c5va1">
-
+                        <div class="bg-white dark:bg-slate-800 w-1/2 justify-between space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
                             <!-- Search form -->
-                            <form class="c4ijw">
-                                <label for="action-search" class="cbl3h">Search</label>
-                                <input id="action-search" class="bg-white dark:bg-slate-800 c03gb ctmd2" type="search" placeholder="Search…">
-                                <button class="cozyg csmh2 c1u8w c2djl" type="submit" aria-label="Search">
-                                    <svg class="ml-3 mr-2 c1bvt cc44c ciz4v czgoy c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"></path>
-                                        <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"></path>
-                                    </svg>
-                                </button>
-                            </form>
-
-                            <!-- Add member button -->
-                            <div class="c92xk">
+                            <div class="flex mb-4 justify-between">
+                                <form class="c4ijw" method="GET" action="{% url 'comionneur:search' %}">
+                                    <label for="action-search" class="cbl3h">Search</label>
+                                    <input id="action-search" name="q" class="bg-white dark:bg-slate-800 c03gb ctmd2" type="search" placeholder="Search…">
+                                </form>   
+                                <!-- Add member button -->
                                 <!-- Start -->
                                 <div x-data="{ modalOpen: false }">
-                                    <button class="btn cfeqx cf1ce ceqwg" @click.prevent="modalOpen = true" aria-controls="feedback-modal">Send Feedback</button>
+                                    <button class="btn cfeqx cf1ce ceqwg" @click.prevent="modalOpen = true" aria-controls="feedback-modal">Ajouter camionneur</button>
                                     <!-- Modal backdrop -->
                                     <div class="bg-slate-900 co20q c5o35 c1u8w citi2 cqfmf" x-show="modalOpen" x-transition:enter="c5mjj coq4n ch8aq" x-transition:enter-start="opacity-0" x-transition:enter-end="cqsra" x-transition:leave="c5mjj coq4n c4al0" x-transition:leave-start="cqsra" x-transition:leave-end="opacity-0" aria-hidden="true" x-cloak=""></div>
                                     <!-- Modal dialog -->
@@ -41,7 +63,7 @@
                                             <!-- Modal header -->
                                             <div class="border-slate-200 dark:border-slate-700 cz4zt cx95x c8o14">
                                                 <div class="flex items-center cmgwo">
-                                                    <div class="text-slate-800 dark:text-slate-100 cqosy">Send Feedback</div>
+                                                    <div class="text-slate-800 dark:text-slate-100 cqosy">Ajouter camionneur</div>
                                                     <button class="coyl7 cljes ciz4v czgoy" @click="modalOpen = false">
                                                         <div class="cbl3h">Close</div>
                                                         <svg class="c3wll cgmrc cm474">
@@ -52,35 +74,30 @@
                                             </div>
                                             <!-- Modal content -->
                                             <div class="cx95x ctysv">
-                                                <div claajouterss="text-sm">
+                                                <div class="text-sm">
                                                     <div class="text-slate-800 dark:text-slate-100 cw92y cvavu">Let us know what you think 🙌</div>
                                                 </div>
-                                            <form action="{% url "comionneur:list_camionneur" %}" method="post">
-                                                <div class="cd0mw">
-                                                    {% csrf_token %}
-                                                    {{ form|crispy }}
-                                                </div>
+                                                <form action="{% url 'comionneur:list_camionneur' %}" method="post">
+                                                    <div class="cd0mw">
+                                                        {% csrf_token %}
+                                                        {{ form|crispy }}
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="border-slate-200 dark:border-blue-600 c87xd cx95x ctysv">
+                                                        <div class="flex justify-center gap-6">
+                                                            <input class="btn cfeqx cf1ce ceqwg mt-5 p-4" type="submit" value="Submit">
+                                                            <a class="btn dark:bg-slate-800 p-4 border-slate-200 mt-5 dark:border-slate-700 c46uo cm7vt c6tg6" href="{% url 'gestion:gestion' %}">Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <!-- Modal footer -->
-                                            <div class="border-slate-200 dark:border-slate-700 c87xd cx95x ctysv">
-
-                                                 <div class='flex justify-center gap-6'>
-                                                    <input class='btn cfeqx cf1ce ceqwg mt-5 p-4' type="submit" value="Submit">
-                                                    <a class="btn dark:bg-slate-800 p-4 border-slate-200 mt-5 dark:border-slate-700 c46uo cm7vt c6tg6" href="{% url 'gestion:gestion' %}">Cancel</a>
-                                                </div> 
-                                            </div>
-                                        </form>
                                         </div>
-                                    </div>                                            
+                                    </div>
                                 </div>
                                 <!-- End -->
                             </div>
-
                         </div>
-
-                    </div>
-
-                   
+                    </div>                  
                     <!-- Cards -->
                     <div class="czwnc cki30 c5va1 flex flex-nowrap">
                         <!-- Users cards -->
@@ -90,32 +107,6 @@
                             <div class="flex chmlm crszu">
                                 <!-- Card top -->
                                 <div class="ckut6 ctk06">
-                                    <!-- Menu button -->
-                                    <div class="c4ijw">
-                                        <div class="inline-flex csmh2 cke32 cvqv9" x-data="{ open: false }">
-                                            <button class="rounded-full" :class="open ? 'c6vqo ce4zx text-slate-500 dark:czgoy': 'czgoy cljes ciz4v coyl7'" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
-                                                <span class="cbl3h">Menu</span>
-                                                <svg class="c3wll chmgx c6dxj" viewBox="0 0 32 32">
-                                                    <circle cx="16" cy="16" r="2"></circle>
-                                                    <circle cx="10" cy="16" r="2"></circle>
-                                                    <circle cx="22" cy="16" r="2"></circle>
-                                                </svg>
-                                            </button>
-                                            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded creyy ct1ew cetne csmh2 c8gb2 cjxbp cke32 c8407 cox8h c5xk8" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="c5mjj coq4n ch8aq ccio3" x-transition:enter-start="opacity-0 c3pue" x-transition:enter-end="cqsra cfwq4" x-transition:leave="c5mjj coq4n ch8aq" x-transition:leave-start="cqsra" x-transition:leave-end="opacity-0" x-cloak="">
-                                                <ul>
-                                                    <li>
-                                                        <a class="text-sm flex cn6r0 cnz6z ch1ih c6w4h cw92y cjm6w cynm4" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="text-sm flex cn6r0 cnz6z ch1ih c6w4h cw92y cjm6w cynm4" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="text-sm flex cvu65 c6tg6 cw92y cjm6w cynm4" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!-- Image + name -->
                                     <header>                
                                         <div class="flex justify-center c7j98">
@@ -125,7 +116,7 @@
                                                         <path d="M21 14.077a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 010 1.5 1.5 1.5 0 00-1.5 1.5.75.75 0 01-.75.75zM14 24.077a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"></path>
                                                     </svg>
                                                 </div>
-                                                <img class="rounded-full" src="{{ camionneur.background }}" width="64" height="64" alt="{{ camionneur.get_full_name }}">
+                                                <img class="rounded-full" src="{{ camionneur.get_photo.url }}" width="64" height="64" alt="{{ camionneur.get_full_name }}">
                                             </a>
                                         </div>
                                         <div class="cob4g">
@@ -148,9 +139,10 @@
                                             <svg class="mr-2 c6tg6 c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
                                                 <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z"></path>
                                             </svg>
-                                            Delete</button>
+                                            <span class="c9o7o">Delete</span>
+                                        </button>
                                         <!-- Modal backdrop -->
-                                    <div class="bg-slate-900 co20q c5o35 c1u8w citi2 cqfmf" x-show="modalOpen" x-transition:enter="c5mjj coq4n ch8aq" x-transition:enter-start="opacity-0" x-transition:enter-end="cqsra" x-transition:leave="c5mjj coq4n c4al0" x-transition:leave-start="cqsra" x-transition:leave-end="opacity-0" aria-hidden="true" x-cloak=""></div>
+                                        <div class="bg-slate-900 co20q c5o35 c1u8w citi2 cqfmf" x-show="modalOpen" x-transition:enter="c5mjj coq4n ch8aq" x-transition:enter-start="opacity-0" x-transition:enter-end="cqsra" x-transition:leave="c5mjj coq4n c4al0" x-transition:leave-start="cqsra" x-transition:leave-end="opacity-0" aria-hidden="true" x-cloak=""></div>
                                         <!-- Modal dialog -->
                                             <div id="danger-modal" class="flex items-center justify-center ct1ew clpyc c1u8w citi2 cqfmf crf5v c9r0z" role="dialog" aria-modal="true" x-show="modalOpen" x-transition:enter="c5mjj cgpmj ch8aq" x-transition:enter-start="opacity-0 c8f6f" x-transition:enter-end="cqsra cfwq4" x-transition:leave="c5mjj cgpmj ch8aq" x-transition:leave-start="cqsra cfwq4" x-transition:leave-end="opacity-0 c8f6f" x-cloak="">
                                                 <div class="bg-white dark:bg-slate-800 rounded cn60w craqh cetne c0nbw c3ff8" @click.outside="modalOpen = false" @keydown.escape.window="modalOpen = false">
@@ -165,96 +157,99 @@
                                                         <div>
                                                             <!-- Modal header -->
                                                             <div class="c7j98">
-                                                                <div class="text-slate-800 dark:text-slate-100 cqosy cs31h">Delete 1 customer?</div>
+                                                                <div class="text-slate-800 dark:text-slate-100 cqosy cs31h">supprimer ce camionneur ?</div>
                                                             </div>
                                                             <!-- Modal content -->
-                                                              <div class="text-sm ckgh8">
+                                                            <div class="text-sm ckgh8">
                                                                 <div class="cbfhc">
-                                                                    <p>Semper eget duis at tellus at urna condimentum mattis pellentesque lacus suspendisse faucibus interdum.</p>
+                                                                    <p>Êtes-vous sûr de vouloir supprimer ce camionneur {{camionneur.get_full_name}}</p>
+                                                                </div>
+                                                                <div class="cbfhc">
+                                                                    <p>Tell: {{camionneur.numero_de_telephone}}</p>
+                                                                </div>
+                                                                <div class="cbfhc">
+                                                                    <p>Email: {{camionneur.email}}</p>
+                                                                </div>
+                                                                <div class="cbfhc">
+                                                                    <p>Numero Permis: {{camionneur.numero_de_permis}} ?</p>
                                                                 </div>
                                                             </div>
                                                             <!-- Modal footer -->
                                                             <div class="flex flex-wrap justify-end cwkb0">
                                                                 <button class="border-slate-200 dark:border-slate-700 c46uo cm7vt ch1ih c6w4h cjusy" @click="modalOpen = false">Cancel</button>
-                                                                <button class="cro9h c0vjv ceqwg cjusy">Yes, Delete it</button>
+                                                                <form :action="'{% url "comionneur:delete_camionneur" pk=camionneur.id %}'" method="post">
+                                                                    {% csrf_token %}
+                                                                    <button class="cro9h c0vjv ceqwg cjusy" type="submit">Oui, supprimer</button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>                                            
                                         </div>                                                                             <!-- Start -->
-                                    <button class="btn dark:bg-slate-800 border-slate-200 dark:border-slate-700 c46uo cm7vt ch1ih c6w4h" href="{% url 'comionneur:update_camionneur' pk=camionneur.id %}">
-                                        <svg class="text-slate-500 dark:text-slate-400 c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
+                                    <button class="btn dark:bg-blue-600 border-blue-700 dark:border-blue-700 c46uo cm7vt ch1ih c6w4h" href="{% url 'comionneur:update_camionneur' pk=camionneur.id %}">
+                                        <svg class="text-bleu-500 dark:bleu-slate-400 c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16">
                                             <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z"></path>
                                         </svg>
-                                        <span class="c9o7o"><a href="{% url 'comionneur:update_camionneur' pk=camionneur.id %}">Update</a></span>
+                                        <span class="c9o7o text-b"><a href="{% url 'comionneur:update_camionneur' pk=camionneur.id %}">Update</a></span>
                                     </button>                        
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
-                    <div id="app">
-                        {{ message }}
-                        <button @click="fetchMessage">Obtenir le message</button>
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="crhct">
-                        <div class="flex justify-center">
-                            <nav class="flex" role="navigation" aria-label="Navigation">
-                                <div class="mr-2">
-                                    {% if page_obj.has_previous %}
-                                        <a href="?page={{ page_obj.previous_page_number }}" class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cdfsn cweq2 cyyn9 csq8i cfnh0">
-                                            <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
-                                                <path d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z"></path>
-                                            </svg>
-                                            <span class="cbl3h">Previous</span>
-                                        </a>
-                                    {% else %}
-                                        <span class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cdfsn cweq2 cyyn9 csq8i cfnh0">
-                                            <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
-                                                <path d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z"></path>
-                                            </svg>
-                                            <span class="cbl3h">Previous</span>
-                                        </span>
-                                    {% endif %}
-                                </div>
-                                <ul class="inline-flex text-sm czfjh cw92y cl0q9">
-                                    {% for num in page_obj.paginator.page_range %}
-                                        {% if page_obj.number == num %}
-                                            <li>
-                                                <span class="inline-flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-indigo-500 c1zl5 cyyn9 cxabk cfnh0">{{ num }}</span>
-                                            </li>
-                                        {% else %}
-                                            <li>
-                                                <a class="inline-flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 chl4j cx1ew ch1ih c1hrc c6w4h cyyn9 cxabk cfnh0" href="?page={{ num }}">{{ num }}</a>
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ul>
-                                <div class="c9o7o">
-                                    {% if page_obj.has_next %}
-                                        <a href="?page={{ page_obj.next_page_number }}" class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 chl4j cx1ew ch1ih c1hrc c6w4h cyyn9 cl0q9 csq8i cfnh0">
-                                            <span class="cbl3h">Next</span>
-                                            <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
-                                                <path d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z"></path>
-                                            </svg>
-                                        </a>
-                                    {% else %}
-                                        <span class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 chl4j cx1ew ch1ih c1hrc c6w4h cyyn9 cl0q9 csq8i cfnh0">
-                                            <span class="cbl3h">Next</span>
-                                            <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
-                                                <path d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z"></path>
-                                            </svg>
-                                        </span>
-                                    {% endif %}
-                                </div>
-                            </nav>
+                </div>
+                <!-- Pagination -->
+                <div class="flex justify-center">
+                    <nav class="flex" role="navigation" aria-label="Navigation">
+                        <div class="mr-2">
+                            {% if page_obj.has_previous %}
+                                <a href="?page={{ page_obj.previous_page_number }}" class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cdfsn cweq2 cyyn9 csq8i cfnh0">
+                                    <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
+                                        <path d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z"></path>
+                                    </svg>
+                                    <span class="cbl3h">Previous</span>
+                                </a>
+                            {% else %}
+                                <span class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cdfsn cweq2 cyyn9 csq8i cfnh0">
+                                    <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
+                                        <path d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z"></path>
+                                    </svg>
+                                    <span class="cbl3h">Previous</span>
+                                </span>
+                            {% endif %}
                         </div>
-                    </div>
-
-
+                        <ul class="inline-flex text-sm czfjh cw92y cl0q9">
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                    <li>
+                                        <span class="inline-flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-indigo-500 c1zl5 cyyn9 cxabk cfnh0">{{ num }}</span>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a class="inline-flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 chl4j cx1ew ch1ih c1hrc c6w4h cyyn9 cxabk cfnh0" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        <div class="c9o7o">
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}" class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 chl4j cx1ew ch1ih c1hrc c6w4h cyyn9 cl0q9 csq8i cfnh0">
+                                    <span class="cbl3h">Next</span>
+                                    <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
+                                        <path d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z"></path>
+                                    </svg>
+                                </a>
+                            {% else %}
+                                <span class="inline-flex items-center justify-center rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 chl4j cx1ew ch1ih c1hrc c6w4h cyyn9 cl0q9 csq8i cfnh0">
+                                    <span class="cbl3h">Next</span>
+                                    <svg class="c3wll cgmrc cm474" viewBox="0 0 16 16">
+                                        <path d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z"></path>
+                                    </svg>
+                                </span>
+                            {% endif %}
+                        </div>
+                    </nav>
                 </div>
             </main>
             <script>

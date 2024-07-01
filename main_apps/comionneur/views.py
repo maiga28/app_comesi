@@ -11,6 +11,10 @@ from django.contrib.auth.decorators import permission_required
 from api.forms_api.forms import *
 from django.db import IntegrityError
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from django.contrib import messages
+
+
 
 # from django.db import IntegrityError
 # from django.http import JsonResponse
@@ -74,6 +78,7 @@ def list_camionneur(request):
         if form.is_valid():
             try:
                 form.save()
+                messages.success(request, "Le camionneur a été ajouté avec succès.")
                 return redirect('comionneur:list_camionneur')  # Redirige vers une page de succès
             except IntegrityError:
                 form.add_error('username', "Ce nom d'utilisateur existe déjà. Veuillez en choisir un autre.")
@@ -104,14 +109,7 @@ def list_camionneur(request):
     
     return render(request, 'camionneur/list_camionneur.html', context)
 
-@group_required('admin')
-@login_required(login_url='/account_login/')
-def detail_camionneur(request,pk):
-    camionneurs = get_object_or_404(Camionneur, id=pk)
-    context = {
-        'camionneurs':camionneurs
-    }
-    return render(request, 'camionneur/detail_camionneur.html', context)
+
 
 @login_required(login_url='/account_login/')
 @group_required('admin')
@@ -142,14 +140,37 @@ def update_camionneur(request,pk):
 @login_required(login_url='/account_login/')
 @group_required('admin')
 def delete_camionneur(request, pk):
-    camionneur = get_object_or_404(Camionneur, id=pk)
-    if request.method == "POST":
-        camionneur.delete()
-        return redirect('camionneur:list_camionneur')
+    camionneurs = get_object_or_404(Camionneur, id=pk)
+    if request.method == 'POST':
+        camionneurs.delete()
+        return redirect('comionneur:list_camionneur')
     context = {
-        'camionneur': camionneur
+        'camionneurs':camionneurs
     }
     return render(request, 'camionneur/delete_camionneur.html', context)
+
+from django.shortcuts import render
+from django.db.models import Q
+from .models import Camionneur  # Assurez-vous d'importer le modèle approprié
+
+def search_view(request):
+    query = request.GET.get('q')
+    results = []
+    
+    if query:
+        results = Camionneur.objects.filter(
+            Q(nom__icontains=query) | 
+            Q(prenom__icontains=query) | 
+            Q(entreprise_employeur__icontains=query) |
+            Q(type_de_camion_conduit__icontains=query)
+        )
+    
+    context = {
+        'results': results,
+        'query': query,
+    }
+    return render(request, 'camionneur/search_results.html', context)
+
 
 # def ajouter_camionnaire(request):
 #     return render(request, 'camionnaire/ajouter_camionnaire.html')

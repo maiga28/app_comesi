@@ -14,7 +14,7 @@ class Camionneur(AbstractUser):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     photo = models.ImageField(upload_to='media/', blank=True, null=True)
-    background = models.ImageField(upload_to='media/', blank=True, null=True)
+    background = models.ImageField(upload_to='background/', blank=True, null=True)
     date_de_naissance = models.DateField()
     adresse = models.CharField(max_length=255)
     numero_de_telephone = models.CharField(max_length=20)
